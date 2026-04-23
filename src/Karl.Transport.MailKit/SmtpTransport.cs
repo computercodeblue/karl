@@ -47,7 +47,26 @@ public class SmtpTransport : IEmailTransport
 
         using var client = new SmtpClient();
 
-        var secureSocketOptions = _options.UseSsl ? SecureSocketOptions.SslOnConnect : SecureSocketOptions.StartTlsWhenAvailable;
+        var secureSocketOptions = SecureSocketOptions.StartTls;
+
+        switch (_options.SecurityMode.ToLower())
+        {
+            case "none":
+                secureSocketOptions = SecureSocketOptions.None;
+                break;
+            case "implicittls":
+                secureSocketOptions = SecureSocketOptions.SslOnConnect;
+                break;
+            case "starttlsrequired":
+                secureSocketOptions = SecureSocketOptions.StartTls;
+                break;
+            case "starttlswhenavailable":
+                secureSocketOptions = SecureSocketOptions.StartTlsWhenAvailable;
+                break;
+            default:
+                secureSocketOptions = SecureSocketOptions.StartTls;
+                break;
+        }
 
         await client.ConnectAsync(_options.Host, _options.Port, secureSocketOptions, cancellationToken);
 

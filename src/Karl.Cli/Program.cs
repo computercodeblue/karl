@@ -110,6 +110,12 @@ var output = new Option<string>("--output", ["-o"])
     DefaultValueFactory = _ => "emails"
 };
 
+var tls = new Option<string>("--tls", ["-t"])
+{
+    Description = "STARTTLS behavior",
+    Required = false
+};
+
 // Helper: add all the common options to a command
 void AddCommonOptions(Command command)
 {
@@ -135,6 +141,7 @@ send.Options.Add(smtpHost);
 send.Options.Add(smtpPort);
 send.Options.Add(username);
 send.Options.Add(password);
+send.Options.Add(tls);
 
 AddCommonOptions(preview);
 
@@ -145,6 +152,7 @@ async Task<int> HandleEmailAsync(ParseResult parseResult, Action<IKarlBuilder, P
     var fromValue = parseResult.GetValue(from);
     var toValue = parseResult.GetValue(to);
     var subjectValue = parseResult.GetValue(subject);
+    var tlsValue = parseResult.GetValue(tls);
     var jsonPathValue = parseResult.GetValue(jsonPath);
     var markdownPathValue = parseResult.GetValue(markdownPath);
     var bodyValue = parseResult.GetValue(body);
@@ -195,6 +203,11 @@ async Task<int> HandleEmailAsync(ParseResult parseResult, Action<IKarlBuilder, P
         Console.Write(errors.ToString());
         Console.WriteLine("You can set these values via command-line options, environment variables, or in a JSON configuration file.");
         return 1;
+    }
+
+    if (string.IsNullOrEmpty(tlsValue))
+    {
+        tlsValue = "StartTlsRequired";
     }
 
     var provider = services.BuildServiceProvider();
@@ -283,6 +296,7 @@ send.SetAction(parseResult =>
         var smtpPortValue = pr.GetValue(smtpPort);
         var usernameValue = pr.GetValue(username);
         var passwordValue = pr.GetValue(password);
+        var tlsValue = pr.GetValue(tls);
 
         builder.UseSmtp(options =>
         {
@@ -290,7 +304,7 @@ send.SetAction(parseResult =>
             options.Port = smtpPortValue != 0 ? smtpPortValue : 25;
             options.Username = usernameValue ?? string.Empty;
             options.Password = passwordValue ?? string.Empty;
-            options.UseSsl = false;
+            options.SecurityMode = tlsValue ?? "StartTlsRequired";
         });
     })
 );

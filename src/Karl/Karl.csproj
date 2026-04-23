@@ -1,8 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<PackageId>Karl</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Christopher Burke</Authors>
+		<Description>A wrapper for template email functionality.</Description>
+		<PackageTags>smtp email</PackageTags>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>	
+	
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Karl the Mailman Delivers</Title>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Karl.Abstractions\Karl.Abstractions.csproj" />
