@@ -1,23 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<PackageId>Karl.Extensions.Microsoft</PackageId>
-		<Version>1.0.0</Version>
+		<Version>1.1.0</Version>
 		<Authors>Christopher Burke</Authors>
 		<Description>A package to use Karl with Microsoft's DI container.</Description>
 		<PackageTags>smtp email</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	</PropertyGroup>	
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Karl.Abstractions\Karl.Abstractions.csproj" />
-    <ProjectReference Include="..\Karl\Karl.csproj" />
+    <ProjectReference Include="..\Karl.Core\Karl.Core.csproj" />
     <ProjectReference Include="..\Karl.Transport.MailKit\Karl.Transport.Smtp.csproj" />
     <ProjectReference Include="..\Karl.Transport.File\Karl.Transport.File.csproj" />
-	<ProjectReference Include="..\Karl.Transport.StdOut\Karl.Transport.StdOut.csproj" />
+	  <ProjectReference Include="..\Karl.Transport.StdOut\Karl.Transport.StdOut.csproj" />
     <ProjectReference Include="..\Karl.Template.Scriban\Karl.Templates.Scriban.csproj" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 using Karl.Models;
 
-namespace Karl;
+namespace Karl.Core;
 
 public class EmailService : IEmailService
 {

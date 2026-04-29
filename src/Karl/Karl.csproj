@@ -1,21 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<PackageId>Karl</PackageId>
-		<Version>1.0.0</Version>
-		<Authors>Christopher Burke</Authors>
-		<Description>A wrapper for template email functionality.</Description>
-		<PackageTags>smtp email</PackageTags>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	</PropertyGroup>	
-	
+
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <PackageId>Karl</PackageId>
+    <Version>1.1.0</Version>
     <Title>Karl the Mailman Delivers</Title>
+    <Authors>Christopher Burke</Authors>
+    <Description>A wrapper for template email functionality.</Description>
+    <PackageTags>smtp;email;templates;mailkit;scriban</PackageTags>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Karl.Abstractions\Karl.Abstractions.csproj" />
+    <ProjectReference Include="..\Karl.Extensions.Microsoft\Karl.Extensions.Microsoft.csproj" />
+    <ProjectReference Include="..\Karl.Template.Scriban\Karl.Template.Scriban.csproj" />
+    <ProjectReference Include="..\Karl.Transport.Smtp\Karl.Transport.Smtp.csproj" />
   </ItemGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
@@ -8,16 +8,20 @@
     <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
-    <PackageId>Karl.Transport.StdOut</PackageId>
-    <Version>1.1.0</Version>
+    <PackageId>Karl.Template.Scriban</PackageId>
+    <Version>1.0.0</Version>
     <Authors>Christopher Burke</Authors>
-    <Title>Karl StdOut Transport</Title>
-    <Description>Standard output debugging transport for Karl email delivery.</Description>
-    <PackageTags>email;stdout;debugging;transport</PackageTags>
+    <Title>Karl Scriban Template Engine</Title>
+    <Description>Scriban template rendering support for Karl email delivery.</Description>
+    <PackageTags>email;templating;scriban</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Karl.Abstractions\Karl.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Scriban" Version="7.1.0" />
   </ItemGroup>
 
 </Project>

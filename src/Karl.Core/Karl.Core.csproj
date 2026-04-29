@@ -8,16 +8,13 @@
     <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
-    <PackageId>Karl.Transport.StdOut</PackageId>
+    <PackageId>Karl.Core</PackageId>
     <Version>1.1.0</Version>
     <Authors>Christopher Burke</Authors>
-    <Title>Karl StdOut Transport</Title>
-    <Description>Standard output debugging transport for Karl email delivery.</Description>
-    <PackageTags>email;stdout;debugging;transport</PackageTags>
+    <Description>Core implementation for Karl email builder.</Description>
+    <PackageTags>email;smtp;templating</PackageTags>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Karl.Abstractions\Karl.Abstractions.csproj" />
   </ItemGroup>
-
 </Project>
