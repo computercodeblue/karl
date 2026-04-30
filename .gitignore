@@ -55,6 +55,7 @@ bld/
 [Oo]bj/
 [Ll]ogs/
 [Ll]og/
+[Ar]tifacts/
 
 # Test results & coverage
 artifacts/
