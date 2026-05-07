@@ -16,9 +16,7 @@ Karl is designed for developers who want:
 * A lightweight alternative to large monolithic mail systems
 * A reusable framework suitable for APIs, workers, console apps, and SaaS platforms
 
----
-
-# Why Karl?
+## Why Karl?
 
 Excellent libraries like MailKit and Scriban already exist.
 
@@ -37,17 +35,15 @@ Karl focuses on:
 
 Instead of building email infrastructure from scratch in every project, developers can use Karl to quickly assemble production-ready email workflows using proven underlying components.
 
----
-
-# No, Why the Name 'Karl?'
+## No, Why the Name 'Karl?'
 
 Because of NBA great Karl Malone, nicknamed "the Mailman" as a college player because he delivers.
 
 ---
 
-# Features
+## Features
 
-## Core Features
+### Core Features
 
 * Strongly-typed email message builder
 * Transport abstraction layer
@@ -62,9 +58,7 @@ Because of NBA great Karl Malone, nicknamed "the Mailman" as a college player be
 * Scriban template support
 * Optional CSS inlining via PreMailer.Net
 
----
-
-# Solution Structure
+## Solution Structure
 
 | Project                     | Purpose                                                           |
 | --------------------------- | ----------------------------------------------------------------- |
@@ -79,11 +73,11 @@ Because of NBA great Karl Malone, nicknamed "the Mailman" as a college player be
 
 ---
 
-# Installation
+## Installation
 
-## Option 1 — Recommended Wrapper Package
+### Recommended Wrapper Package
 
-For most applications, install the main Karl package.
+For most applications, install the main Karl package. 
 
 ```bash
 dotnet add package Karl
@@ -98,11 +92,13 @@ Typical included functionality:
 * Common transports
 * Scriban template support
 
+Other assemblies are available as packages if you want to install just the portions you need.
+
 ---
 
-# Quick Start
+## Quick Start
 
-## ASP.NET Core Example
+### ASP.NET Core Example
 
 ```csharp
 using Karl;
@@ -124,7 +120,7 @@ builder.Services
 var app = builder.Build();
 ```
 
-## ASP.NET Core With IConfiguration
+### ASP.NET Core With IConfiguration
 
 Karl supports binding transport options from `IConfiguration` via `UseConfiguration(...)`.
 
@@ -146,9 +142,7 @@ builder.Services
 * `Karl:Smtp` -> `SmtpTransportOptions`
 * `Karl:File` -> `FileTransportOptions`
 
----
-
-## appsettings.json Example
+#### appsettings.json Example
 
 ```json
 {
@@ -168,9 +162,7 @@ builder.Services
 }
 ```
 
----
-
-## Sending an Email
+### Sending an Email
 
 ```csharp
 using Karl;
@@ -198,15 +190,20 @@ public class WelcomeService
 
 ---
 
-# Using Individual Components
+## Using Individual Components
 
-Karl is intentionally modular.
+Karl is intentionally modular. You can install only the components you need if you'd rather not use the convenience package.
 
-You can install only the components you need.
+You may prefer individual packages if:
 
----
+* You want minimal dependencies
+* You are building a reusable framework
+* You are creating custom transports
+* You want strict control over transitive packages
+* You do not need SMTP or templating support
+* You are optimizing container image size
 
-# Minimal Core Installation
+### Minimal Core Installation
 
 If you want complete control over dependencies:
 
@@ -228,9 +225,7 @@ Useful for:
 * Shared libraries
 * Framework integrations
 
----
-
-# Dependency Injection Support
+### Dependency Injection Support
 
 ```bash
 dotnet add package Karl.Extensions.Microsoft
@@ -242,9 +237,7 @@ Provides:
 * Standardized registration helpers
 * ASP.NET Core integration
 
----
-
-# Scriban Template Support
+### Scriban Template Support
 
 ```bash
 dotnet add package Karl.Template.Scriban
@@ -253,6 +246,8 @@ dotnet add package Karl.Template.Scriban
 Example:
 
 ```csharp
+var renderer = builder.Services.GetRequiredService<ITemplateRenderer>() // UseKarl() registers ITemplateRenderer
+
 var template = """
 <h1>Hello {{ name }}</h1>
 """;
@@ -261,11 +256,12 @@ var model = new
 {
     name = "Christopher"
 };
+
+var renderedBody = await renderer.RenderAsync(template, model);
+
 ```
 
----
-
-# SMTP Transport
+### SMTP Transport
 
 ```bash
 dotnet add package Karl.Transport.Smtp
@@ -286,9 +282,7 @@ builder.Services.AddKarl().UseSmtp(options =>
 });
 ```
 
----
-
-# File Transport
+### File Transport
 
 Useful for:
 
@@ -315,9 +309,7 @@ builder.Services.AddKarl().UseFile(options =>
 
 Generated messages are written to disk instead of sent.
 
----
-
-# StdOut Transport
+### StdOut Transport
 
 Useful for:
 
@@ -340,20 +332,7 @@ builder.Services.AddKarl().UseStdOut();
 
 ---
 
-# Why Use Individual Packages?
-
-You may prefer individual packages if:
-
-* You want minimal dependencies
-* You are building a reusable framework
-* You are creating custom transports
-* You want strict control over transitive packages
-* You do not need SMTP or templating support
-* You are optimizing container image size
-
----
-
-# Architecture Overview
+## Architecture Overview
 
 Karl separates responsibilities into distinct layers:
 
@@ -373,7 +352,7 @@ This allows developers to:
 
 ---
 
-# Creating Custom Transports
+## Creating Custom Transports
 
 Implement the transport interface:
 
@@ -401,7 +380,7 @@ services.AddSingleton<IEmailTransport, MyTransport>();
 
 ---
 
-# CSS Inlining
+## CSS Inlining
 
 Karl.Template.Scriban can optionally use PreMailer.Net to inline CSS styles for improved email client compatibility.
 
@@ -413,9 +392,9 @@ This is especially useful for:
 
 ---
 
-# Karl.Cli
+## Karl.Cli
 
-Karl includes a standalone CLI tool for:
+Karl includes a standalone CLI tool as a working example and also usable for:
 
 * Sending test emails
 * Rendering templates
@@ -423,116 +402,13 @@ Karl includes a standalone CLI tool for:
 * CI/CD pipelines
 * Administrative scripts
 
----
-
-# Installing Karl.Cli
-
-```bash
-dotnet tool install --global Karl.Cli
-```
-
-Or locally:
-
-```bash
-dotnet new tool-manifest
-dotnet tool install Karl.Cli
-```
+Information on using Karl.Cli is available here → [`src/Karl.Cli/README.md`](src/Karl.Cli/README.md)
 
 ---
 
-# Basic Usage
+## Example Development Workflow
 
-## Send an Email
-
-```bash
-karl send \
-  --from noreply@example.com \
-  --smtp-host smtp.example.com \
-  --to user@example.com \
-  --subject "Hello" \
-  --body "# Hello World"
-```
-
-## CLI Configuration Sources
-
-`Karl.Cli` reads configuration from:
-
-* `--json <path>` when provided explicitly
-* Local config files in current directory (first match wins): `.karl`, `karl`, `karl.json`
-* User config directory:
-  * Windows: `%USERPROFILE%/.karl`
-  * Linux/macOS: `$XDG_CONFIG_HOME/karl` or `~/.config/karl`
-* Environment variables prefixed with `KARL_`
-
-Use `__` in environment variable names for nested keys, for example:
-
-```bash
-KARL_Karl__Smtp__Host=smtp.example.com
-KARL_Karl__Smtp__Port=587
-KARL_Karl__Smtp__SecurityMode=StartTlsRequired
-```
-
----
-
-# Send Using a Template
-
-```bash
-karl send \
-  --from noreply@example.com \
-  --smtp-host smtp.example.com \
-  --to user@example.com \
-  --subject "Welcome {{name}}" \
-  --markdown ./welcome.md \
-  --model ./model.json
-```
-
----
-
-# SMTP Send Example
-
-```bash
-karl send \
-  --from noreply@example.com \
-  --to user@example.com \
-  --subject "SMTP test" \
-  --body "Sent via Karl CLI" \
-  --smtp-host smtp.example.com \
-  --smtp-port 587 \
-  --username username \
-  --password password \
-  --tls StartTlsRequired
-```
-
----
-
-# File Output Mode
-
-```bash
-karl file \
-  --from noreply@example.com \
-  --to user@example.com \
-  --subject "File output test" \
-  --body "This message is written to disk." \
-  --output ./mail-output
-```
-
----
-
-# StdOut Mode
-
-```bash
-karl preview \
-  --from noreply@example.com \
-  --to user@example.com \
-  --subject "Preview test" \
-  --body "This message is printed to stdout."
-```
-
----
-
-# Example Development Workflow
-
-## Local Development
+### Local Development
 
 Use:
 
@@ -543,7 +419,7 @@ to avoid accidentally sending real emails.
 
 ---
 
-## Production
+### Production
 
 Use:
 
@@ -558,9 +434,9 @@ with:
 
 ---
 
-# Recommended Package Combinations
+## Recommended Package Combinations
 
-## Typical Web Application
+### Typical Web Application
 
 ```text
 Karl
@@ -568,7 +444,7 @@ Karl
 
 ---
 
-## Minimal API + SMTP
+### Minimal API + SMTP
 
 ```text
 Karl.Abstractions
@@ -578,7 +454,7 @@ Karl.Transport.Smtp
 
 ---
 
-## Template Rendering Service
+### Template Rendering Service
 
 ```text
 Karl.Abstractions
@@ -587,7 +463,7 @@ Karl.Template.Scriban
 
 ---
 
-## Testing / Preview Environment
+### Testing / Preview Environment
 
 ```text
 Karl.Transport.File
@@ -596,7 +472,7 @@ Karl.Transport.StdOut
 
 ---
 
-# Target Frameworks
+## Target Frameworks
 
 Karl supports:
 
@@ -605,7 +481,7 @@ Karl supports:
 
 ---
 
-# Future Roadmap
+## Future Roadmap
 
 Potential future features include:
 
@@ -620,23 +496,7 @@ Potential future features include:
 
 ---
 
-# Example Solution Layout
-
-```text
-src/
- ├── Karl/
- ├── Karl.Abstractions/
- ├── Karl.Extensions.Microsoft/
- ├── Karl.Template.Scriban/
- ├── Karl.Transport.Smtp/
- ├── Karl.Transport.File/
- ├── Karl.Transport.StdOut/
- └── Karl.Cli/
-```
-
----
-
-# Acknowledgements
+## Acknowledgements
 
 Karl is built on top of several excellent open-source projects:
 
