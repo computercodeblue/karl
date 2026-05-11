@@ -17,6 +17,10 @@
     <Title>Karl Abstractions</Title>
     <Description>Abstractions and contracts for Karl email delivery.</Description>
     <PackageTags>email;smtp;templates;abstractions</PackageTags>
+    <PackageProjectUrl>https://github.com/burke166/Karl</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/burke166/Karl</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
   </PropertyGroup>
 
 </Project>

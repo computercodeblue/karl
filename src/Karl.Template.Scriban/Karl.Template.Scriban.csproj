@@ -17,6 +17,10 @@
     <Title>Karl Scriban Template Engine</Title>
     <Description>Scriban template rendering support for Karl email delivery.</Description>
     <PackageTags>email;templating;scriban</PackageTags>
+    <PackageProjectUrl>https://github.com/burke166/Karl</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/burke166/Karl</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
   </PropertyGroup>
 
   <ItemGroup>

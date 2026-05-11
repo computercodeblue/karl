@@ -17,6 +17,10 @@
     <Authors>Christopher Burke</Authors>
     <Description>A wrapper for template email functionality.</Description>
     <PackageTags>smtp;email;templates;mailkit;scriban</PackageTags>
+    <PackageProjectUrl>https://github.com/burke166/Karl</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/burke166/Karl</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
   </PropertyGroup>
 
   <ItemGroup>

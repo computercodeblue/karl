@@ -16,6 +16,10 @@
     <Authors>Christopher Burke</Authors>
     <Description>Core implementation for Karl email builder.</Description>
     <PackageTags>email;smtp;templating</PackageTags>
+    <PackageProjectUrl>https://github.com/burke166/Karl</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/burke166/Karl</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Karl.Abstractions\Karl.Abstractions.csproj" />

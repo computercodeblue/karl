@@ -20,8 +20,8 @@
     <Authors>Christopher Burke</Authors>
     <Description>Command line tool for sending emails using Karl.</Description>
     <PackageTags>email;cli;dotnet-tool;smtp;templating;mailkit;scriban;automation;notifications</PackageTags>
-    <PackageProjectUrl>https://github.com/YOUR-USERNAME/Karl</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/YOUR-USERNAME/Karl</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/burke166/Karl</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/burke166/Karl</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
 

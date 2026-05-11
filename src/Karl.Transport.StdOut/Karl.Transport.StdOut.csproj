@@ -17,6 +17,10 @@
     <Title>Karl StdOut Transport</Title>
     <Description>Standard output debugging transport for Karl email delivery.</Description>
     <PackageTags>email;stdout;debugging;transport</PackageTags>
+    <PackageProjectUrl>https://github.com/burke166/Karl</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/burke166/Karl</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
   </PropertyGroup>
 
   <ItemGroup>
